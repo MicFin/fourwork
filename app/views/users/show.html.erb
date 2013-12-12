@@ -1,1 +1,26 @@
-<%= @user.email %>
+<h1> Landing Page </h1>
+<% if @user %>
+	<h2><%= @user.name %></h2>
+	<h3>Email: <%= @user.email %> </h3>
+
+
+	<button id="add-work">Add Work History</button>
+
+	<%= form_tag() do %>
+		<%= text_field_tag 'search'%>
+		<%= submit_tag 'Search' %></div>
+	<% end -%>
+
+
+
+
+
+
+
+
+
+
+
+<% else %>
+	<%= "no user logged in" %>
+<% end %>

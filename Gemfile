@@ -8,6 +8,8 @@ gem 'devise'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0'
 
+gem 'foursquare2'
+
 # Use postgresql as the database for Active Record
 gem 'pg'
 
