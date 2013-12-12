@@ -5,3 +5,7 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+Business.create(name: "Chili's", address: "172 Main St", city: "Hingham", state: "MA", country: "USA", latitude: "1737236889", longitude: "23232323", phone: "781-304-4499", category: "pizza", parent_category: "food", url: "www.google.com")
+
+Job.create(user_id: 1, business_id: 1, state: "unverified", start_date: "2001-02-03", end_date: "2001-04-03", position: "bartender")

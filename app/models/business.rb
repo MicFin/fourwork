@@ -1,4 +1,4 @@
 class Business < ActiveRecord::Base
-  has_many :jobs
-  has_many :businesses, through: :jobs
+  has_many :employments
+  has_many :users, through: :employments
 end
