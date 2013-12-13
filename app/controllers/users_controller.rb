@@ -5,9 +5,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    if current_user 
-      @user = User.find(current_user)
-    end
+
   end
 
 end

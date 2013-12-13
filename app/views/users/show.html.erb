@@ -1,16 +1,24 @@
 <h1> Landing Page </h1>
-<% if @user %>
-	<h2><%= @user.name %></h2>
-	<h3>Email: <%= @user.email %> </h3>
-	<h3>Work Experience: <%= @user.businesses.first.name %> </h3>
-
+<% if current_user %>
+	<h2><%= current_user.name %></h2>
+	<h3>Email: <%= current_user.email %> </h3>
+	<h3>Work Experience:</h3>
+			<% current_user.jobs.each do |job| %>
+			<h4> <%= job.business.name %>	</h4>	
+			<h4> <%= job.position %> </h4>
+			<h4> <%= job.start_date %> to <%= job.end_date %></h4>		
+			<% end %>
 	<button id="add-work">Add Work History</button>
 
-	<%= form_tag() do %>
-		<%= text_field_tag 'search'%>
-		<%= submit_tag 'Search' %></div>
-	<% end -%>
-
+	<div class="search-fields">
+		<%= form_tag() do %>
+			<h4>Business
+			<%= text_field_tag 'search'%></h4>
+			<h4>City
+			<%= text_field_tag 'location'%></h4>
+			<%= submit_tag 'Search' %></div>
+		<% end %>
+	</div>
 
 
 
@@ -22,5 +30,5 @@
 
 
 <% else %>
-	<%= "no user logged in" %>
+	<%= "Please Sign Up" %>
 <% end %>

@@ -1,0 +1,14 @@
+<h1> <%= @business.name %></h1>
+<% @business.users.uniq.each do |user|%>
+	<h2> <%= user.name %> </h2>
+	<h3> <%= user.email %> </h3>
+	<% user.jobs.each do |job|%> 
+		<% if job.business_id == @business.id %>
+			<h3> <%= job.position %> </h3>
+		<% end %>
+	<% end %>
+<% end %>
+
+<%# @business.alph_positions.each do |position|%>
+<%# position %>
+<%# end %>

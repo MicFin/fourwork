@@ -1,0 +1,5 @@
+<h1>All Businesses List</h1>
+<% @businesses.each do |business|%>
+	<h2> <%= business.name %> </h2>
+	<h2> # of employees: <%= business.users.uniq.count %> </h2>
+<% end %>
