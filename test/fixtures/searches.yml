@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  business_name: MyString
+  city: MyString
+  last_search: 2013-12-13
+
+two:
+  business_name: MyString
+  city: MyString
+  last_search: 2013-12-13
