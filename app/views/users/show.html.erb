@@ -30,7 +30,8 @@
 	  <h4><%= place["location"]["address"] %></h4>
 	  <h4><%= place["location"]["city"] %></h4>
 	  <h4><%= place["location"]["state"] %></h4>
-	  <button id="add-job">Add To Resume</button>
+
+		<%= button_to 'Add to resume', { controller: "businesses", action: "add_from_search", business: place,   method: :post} %>
 	<% end %>
 </div>
 
