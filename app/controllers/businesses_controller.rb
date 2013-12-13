@@ -6,7 +6,7 @@ class BusinessesController < ApplicationController
 
   def show
       @business = Business.find(params[:id])
-      binding.pry
+      @positions = Business.find(params[:id]).positions_list
   end
 
 end

@@ -1,18 +1,18 @@
 require 'foursquare2'
 require 'pry'
 
-client = Foursquare2::Client.new(:client_id => "FEYHVUFU4AUHHLTR0T0IFL4MREWZ3EFCGI1IYAHZINN15FJZ", :client_secret => "AMU4LBCIYBAHOPY0DUCYQ3FQ4SC5FD322USVN5ZV54HLX4PY")
+# client = Foursquare2::Client.new(:client_id => "FEYHVUFU4AUHHLTR0T0IFL4MREWZ3EFCGI1IYAHZINN15FJZ", :client_secret => "AMU4LBCIYBAHOPY0DUCYQ3FQ4SC5FD322USVN5ZV54HLX4PY")
 
-results = client.search_venues(:ll => '36.142064,-86.816086', :query => 'Starbucks')
+# results = client.search_venues(:ll => '36.142064,-86.816086', :query => 'Starbucks')
 
-places = results.first[1].first["items"]
+# places = results.first[1].first["items"]
 
-places.each do |place|
-  puts place["name"] 
-  puts place["location"]["address"]
-  puts place["location"]["city"]
-  puts place["location"]["state"]
-end
+# places.each do |place|
+#   puts place["name"] 
+#   puts place["location"]["address"]
+#   puts place["location"]["city"]
+#   puts place["location"]["state"]
+# end
 
 
 # ["groups",

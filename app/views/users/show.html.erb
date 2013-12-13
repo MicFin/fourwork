@@ -6,8 +6,9 @@
 			<% current_user.jobs.each do |job| %>
 			<h4> <%= job.business.name %>	</h4>	
 			<h4> <%= job.position %> </h4>
-			<h4> <%= job.start_date %> to <%= job.end_date %></h4>		
+			<h4> <%= job.start_date.strftime("%m/%d/%Y") %> to <%= job.end_date.strftime("%m/%d/%Y") %></h4>		
 			<% end %>
+
 	<button id="add-work">Add Work History</button>
 
 	<div class="search-fields">
@@ -20,7 +21,18 @@
 		<% end %>
 	</div>
 
+<div class="search-results">
+	<% results = @client.search_venues(:ll => '36.142064,-86.816086', :query => 'Starbucks') %>
+	<% places = results.first[1].first["items"] %>
 
+	<% places.each do |place| %>
+	  <h3><%= place["name"]  %></h3>
+	  <h4><%= place["location"]["address"] %></h4>
+	  <h4><%= place["location"]["city"] %></h4>
+	  <h4><%= place["location"]["state"] %></h4>
+	  <button id="add-job">Add To Resume</button>
+	<% end %>
+</div>
 
 
 
