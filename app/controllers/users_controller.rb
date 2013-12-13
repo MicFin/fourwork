@@ -5,7 +5,6 @@ class UsersController < ApplicationController
   end
 
   def show
-    @client = Foursquare2::Client.new(:client_id => ENV["CLIENT_ID"], :client_secret => ENV["CLIENT_SECRET"])
   end
 
 
