@@ -18,4 +18,4 @@
 
 # Job.create(user_id: 2, business_id: 2, state: "unverified", start_date: "2000-02-03", end_date: "2000-04-03", position: "Dishwasher")
 
-Job.create(user_id: 1, business_id: 2, state: "unverified", start_date: "1999-02-03", end_date: "1999-04-03", position: "Dishwasher")
+# Job.create(user_id: 1, business_id: 2, state: "unverified", start_date: "1999-02-03", end_date: "1999-04-03", position: "Dishwasher")
