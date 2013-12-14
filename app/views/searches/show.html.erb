@@ -2,9 +2,9 @@
 
 <% @search.businesses.each do |business| %>
   <h3><%= business["name"]  %></h3>
-  <h4><%= business["location"]["address"] %></h4>
-  <h4><%= business["location"]["city"] %></h4>
-  <h4><%= business["location"]["state"] %></h4>
+  <h4><%= business["address"] %></h4>
+  <h4><%= business["city"] %></h4>
+  <h4><%= business["state"] %></h4>
 
-	<%= button_to 'Add to resume', { controller: "businesses", action: "add_from_search", business: place,   method: :post} %>
+	<%= button_to 'Add to resume', { controller: "businesses", action: "add_from_search", business: business,   method: :post} %>
 <% end %>

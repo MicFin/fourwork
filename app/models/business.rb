@@ -1,6 +1,8 @@
 class Business < ActiveRecord::Base
   has_many :jobs
   has_many :users, through: :jobs
+  has_many :search_businesses
+  has_many :searches, through: :search_businesses
 
 # @alph_positions = self.positions.sort! { |a,b| a.downcase <=> b.downcase } 
 
