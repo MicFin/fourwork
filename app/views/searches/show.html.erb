@@ -6,5 +6,9 @@
   <h4><%= business["city"] %></h4>
   <h4><%= business["state"] %></h4>
 
-	<%= button_to 'Add to resume', { controller: "businesses", action: "add_from_search", business: business,   method: :post} %>
+		<%= link_to "Add Job", new_job_path(business_id: business.id) %>
+
+	<%#= button_to 'Add to resume', { controller: "jobs", action: "new", company: business,   method: :get} %>
+
+			<%#= link_to "Add Work History", new_search_path %>
 <% end %>

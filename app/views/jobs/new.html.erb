@@ -1,0 +1,19 @@
+<%= form_for @job do |f| %>
+	<div>
+		<%= f.label :position %>
+		<%= f.text_field :position %>
+	</div>
+	<div>
+		<%= f.label :start_date %>
+		<%= f.text_field :start_date %>
+	</div>
+	<div>
+		<%= f.label :end_date, "City, State" %>
+		<%= f.text_field :end_date %>
+	</div>
+	<%= hidden_field_tag 'user_id', current_user.id %>
+		<%= hidden_field_tag 'business_id', @business.id %>
+	<div>
+		<%= f.submit "Add to resume" %>
+	</div>
+<% end %>

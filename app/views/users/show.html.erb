@@ -4,9 +4,9 @@
 	<h3>Email: <%= current_user.email %> </h3>
 	<h3>Work Experience:</h3>
 			<% current_user.jobs.each do |job| %>
-			<h4> <%= job.business.name %>	</h4>	
+			<h4> <%= job.business.name %>: <%=job.business.city%>, <%= job.business.state %>	</h4>	
 			<h4> <%= job.position %> </h4>
-			<h4> <%= job.start_date.strftime("%m/%d/%Y") %> to <%= job.end_date.strftime("%m/%d/%Y") %></h4>		
+			<h4> <%#= job.start_date.strftime("%m/%d/%Y") %> to <%#= job.end_date.strftime("%m/%d/%Y") %></h4>		
 			<% end %>
 
 

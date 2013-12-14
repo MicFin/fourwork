@@ -9,6 +9,10 @@ class BusinessesController < ApplicationController
       @positions = Business.find(params[:id]).positions_list
   end
 
+  # def new
+  #   @business = Business.new
+  # end
+
   # def add_from_search
 
   #   # need to add longitude and latitude

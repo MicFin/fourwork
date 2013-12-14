@@ -5,8 +5,8 @@ Conectup::Application.routes.draw do
   resources :users
   resources :businesses
   resources :searches
-  
-  post '/search/add' => 'businesses#add_from_search', as: :add_from_search
+  resources :jobs
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

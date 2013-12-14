@@ -11,10 +11,7 @@ class SearchesController < ApplicationController
       @search = Search.new(business_name: params[:search]["business_name"], city: params[:search]["city"])
       @search.save
       @search.populate_businesses
-
-      binding.pry
        render :show
-      # redirect_to @search
     end
   end
 
