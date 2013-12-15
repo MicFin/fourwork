@@ -10,7 +10,7 @@ class SearchesController < ApplicationController
     if !@search.present?
       @search = Search.new(business_name: params[:search]["business_name"].downcase, city: params[:search]["city"].downcase)
       @search.save
-      @search.populate_businesses
+      @search.show_businesses
     end
     render :show
   end

@@ -4,6 +4,7 @@ class Search < ActiveRecord::Base
 
   def show_businesses
     @businesses ||= populate_businesses
+    self.businesses
   end
 
   # private

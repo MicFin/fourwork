@@ -13,7 +13,6 @@ class JobsController < ApplicationController
   end
 
   def edit
-    binding.pry
     @job = Job.find(params[:id].to_i) 
     @business = Business.find(@job.business_id)
   end

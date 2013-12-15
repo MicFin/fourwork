@@ -1,23 +1,48 @@
 <h1> <%= @business.name %></h1>
+<h2> <%= @business.address + ", " + @business.city + ", " + @business.state %>, <%= @business.country %> </h2>
 
-<% @positions.each do |position, total|%>
-	<%= position %>s: <%= total %>
-	</br>
+<% current_user.jobs.each do |job|%> 
+	<% if job.business_id == @business.id %>
+		<h3> Your Position: <%= job.position %> <%= link_to 'Edit Job', edit_job_path(id: job.id) %></h3>
+	<% end %>
 <% end %>
 
+
+<div><%= link_to "Add Job", new_job_path(business_id: @business.id) %></div>
+<h3> Latitude: <%= @business.latitude %> </h3>
+<h3> Longitude: <%= @business.longitude %> </h3>
+<h3> <%= @business.phone %> </h3>
+<h3> Category: <%= @business.category %> </h3>
+<h3> Parent Category: <%= @business.parent_category %> </h3>
+
+<h2> Positions by # of Employees</h2>
+
+<% @positions.each do |position, total|%>
+	<h3> <%= position %>s: <%= total %> </h3>
+<% end %>
+
+<h2> Employees by Name</h2>
 <% @business.users.uniq.each do |user|%>
-	<h2> <%= user.name %> </h2>
+	<h3> <%= link_to user.name, user %> </h3>
 	<% user.jobs.each do |job|%> 
 		<% if job.business_id == @business.id %>
-			<h3> <%= job.position %> </h3>
-			<%= binding.pry %>
+			<h3> Position: <%= job.position %> </h3>
 			<%= link_to 'Edit Job', edit_job_path(id: job.id) %>
 		<% end %>
 	<% end %>
 <% end %>
 
+<h2> Employees by Position</h2>
+	<% @positions.each do |position| %>
+		<h3> <%= position.first %>s: </h3>
+		<% @business.jobs.each do |job| %>
+			<% if job.position == position.first %>
+				<%= link_to User.find(job.user_id).name, User.find(job.user_id) %>
+			<% end %>
+		<% end %>
+	<% end %>
 
-	<%= link_to "Add Job", new_job_path(business_id: @business.id) %>
+
 
 
 
