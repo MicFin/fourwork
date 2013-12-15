@@ -3,11 +3,23 @@
 <% @search.businesses.each do |business| %>
 
 	<h3><%= link_to (business["name"]), business %> </h3>
+
+	<h3><%= link_to "Add Job", new_job_path(business_id: business.id) %></h3>
+	
+	<% if business.user_ids.include?(current_user.id) %>
+		<% current_user.jobs.each do |job|%> 
+			<% if job.business_id == business.id %>
+				<h3><%= job.position %> 
+				<%= link_to 'Edit Job', edit_job_path(id: job.id) %></h3>
+			<% end %>
+		<% end %>
+	<% end %>
+
   <h4><%= business["address"] %></h4>
   <h4><%= business["city"] %></h4>
   <h4><%= business["state"] %></h4>
 
-		<%= link_to "Add Job", new_job_path(business_id: business.id) %>
+
 
 	<%#= button_to 'Add to resume', { controller: "jobs", action: "new", company: business,   method: :get} %>
 

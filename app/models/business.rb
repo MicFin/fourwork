@@ -48,8 +48,16 @@ class Business < ActiveRecord::Base
           end
         end
       end
-    end
+    end 
     return @by_category
+  end
+
+  def self.by_employee_count
+    @by_employees ={}
+    self.all.each do |business|
+      @by_employees[business] = business.users.count
+    end
+    return @by_employees.sort_by { |business, employees| employees }
   end
 
 
