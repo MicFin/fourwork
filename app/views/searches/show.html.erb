@@ -2,9 +2,7 @@
 
 <% @search.businesses.each do |business| %>
 
-	<h3><%#= link_to (business["name"] + ": " + business["address"] + ", " business["city"] + ", " + business["state"]), business %> </h3>
-		<h3><%= link_to (business["name"]), business %> </h3>
-  <h3><%#= business["name"]  %></h3>
+	<h3><%= link_to (business["name"]), business %> </h3>
   <h4><%= business["address"] %></h4>
   <h4><%= business["city"] %></h4>
   <h4><%= business["state"] %></h4>

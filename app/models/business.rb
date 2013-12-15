@@ -26,6 +26,32 @@ class Business < ActiveRecord::Base
     return total_positions.sort_by {|position, number| position}
   end
 
+  def self.categories
+    @all_categories_list = []
+    self.all.each do |business|
+      @all_categories_list << business.category
+    end
+    # return @all_categories_list.uniq!
+    @uniq_categories = @all_categories_list.uniq!
+    self.by_category(@uniq_categories)
+  end
+
+  def self.by_category(categories)
+    @by_category = {}
+    categories.each do |category|
+      self.all.each do |business|
+        if business.category == category
+          if @by_category[category] == nil 
+            @by_category[category] = [business]
+          else
+            @by_category[category] += [business]
+          end
+        end
+      end
+    end
+    return @by_category
+  end
+
 
 
 end

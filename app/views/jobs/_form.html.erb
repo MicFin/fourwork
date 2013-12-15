@@ -15,7 +15,7 @@
 	<%= hidden_field_tag 'user_id', current_user.id %>
 		<%= hidden_field_tag 'business_id', @business.id %>
 	<div>
-		<% if @job.id!= nil %>
+		<% if @job.id != nil %>
 			<%= f.submit "Update Resume" %>
 		<% else %>
 			<%= f.submit "Add to resume" %>

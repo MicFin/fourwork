@@ -3,7 +3,11 @@
 
 <% current_user.jobs.each do |job|%> 
 	<% if job.business_id == @business.id %>
-		<h3> Your Position: <%= job.position %> <%= link_to 'Edit Job', edit_job_path(id: job.id) %></h3>
+
+		<h3> Your Position: <%= job.position %> 
+		<% if job.user_id == current_user.id %>
+			<%= link_to 'Edit Job', edit_job_path(id: job.id) %></h3>
+		<% end %>
 	<% end %>
 <% end %>
 
@@ -23,11 +27,13 @@
 
 <h2> Employees by Name</h2>
 <% @business.users.uniq.each do |user|%>
-	<h3> <%= link_to user.name, user %>: 	</h3>
+	<h3> <%= link_to user.name, user_path(id: user.id) %>: 	</h3>
 	<% user.jobs.each do |job|%> 
 		<% if job.business_id == @business.id %>
  			<h4> <%= job.position %> 
-			<%= link_to 'Edit Job', edit_job_path(id: job.id) %> </h4>
+ 			<% if job.user_id == current_user.id %>
+				<%= link_to 'Edit Job', edit_job_path(id: job.id) %> </h4>
+			<% end %>
 		<% end %>
 	<% end %>
 

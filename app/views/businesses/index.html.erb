@@ -1,5 +1,20 @@
 <h1>All Businesses List</h1>
+<% @businesses.categories.each do |category, businesses| %>
+	<h2> <%= category %> </h2>
+	<% businesses.each do |business| %>
+		<h3><%= link_to business.name, business %> </h3>
+		<h4><%= business["address"] %></h4>
+	  <h4><%= business["city"] %></h4>
+	  <h4><%= business["state"] %></h4>
+	 <% end %>
+<% end %> 
+
+
+
 <% @businesses.each do |business|%>
-	<h2> <%= business.name %> </h2>
+	<h2> <%= link_to business.name, business %> </h2>
+	  <h3><%= business["address"] %> 
+  <%= business["city"] %>
+  <%= business["state"] %></h3>
 	<h2> # of employees: <%= business.users.uniq.count %> </h2>
 <% end %>
