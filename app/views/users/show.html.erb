@@ -3,12 +3,13 @@
 	<h2><%= current_user.name %></h2>
 	<h3>Email: <%= current_user.email %> </h3>
 	<h3>Work Experience:</h3>
-			<% current_user.jobs.each do |job| %>
-			<h4> <%= job.business.name %>: <%=job.business.city%>, <%= job.business.state %>	</h4>	
+
+		<% current_user.jobs.each do |job| %>	
+			<h4><%= link_to (job.business.name + ": " + job.business.city + ", " + job.business.state), job.business %> </h4>
 			<h4> <%= job.position %> </h4>
 			<h4> <%= job.start_date.strftime("%m/%d/%Y") %> to <%= job.end_date.strftime("%m/%d/%Y") %></h4>
 			<h5><%= link_to 'Edit', edit_job_path(job) %></h5>		
-			<% end %>
+		<% end %>
 
 
 	<div class="search-fields">

@@ -10,9 +10,15 @@
 	<% user.jobs.each do |job|%> 
 		<% if job.business_id == @business.id %>
 			<h3> <%= job.position %> </h3>
+			<%= binding.pry %>
+			<%= link_to 'Edit Job', edit_job_path(id: job.id) %>
 		<% end %>
 	<% end %>
 <% end %>
+
+
+	<%= link_to "Add Job", new_job_path(business_id: @business.id) %>
+
 
 
 

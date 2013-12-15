@@ -13,6 +13,7 @@ class JobsController < ApplicationController
   end
 
   def edit
+    binding.pry
     @job = Job.find(params[:id].to_i) 
     @business = Business.find(@job.business_id)
   end
@@ -27,7 +28,6 @@ class JobsController < ApplicationController
   end  
 
   def destroy
-    binding.pry
     @job = Job.find(params["id"].to_i)
     @job.destroy
     redirect_to user_path(id: current_user.id) 
