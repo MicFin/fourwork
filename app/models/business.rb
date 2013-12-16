@@ -6,7 +6,14 @@ class Business < ActiveRecord::Base
 
   # reviews, comments on business
   has_many :comments, as: :commentable
-# @alph_positions = self.positions.sort! { |a,b| a.downcase <=> b.downcase } 
+
+  validates :name, presence: true
+  validates :fs_id, presence: true
+  validates :longitude, presence: true
+  validates :latitude, presence: true
+  validates :category, presence: true
+  validates :parent_category, presence: true
+
 
   def positions_list
     @all_positions = []

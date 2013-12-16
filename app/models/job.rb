@@ -5,12 +5,16 @@ class Job < ActiveRecord::Base
  # reference, coworker
  has_many :comments, as: :commentable
 
-  validates :content, presence: true
-  validates :commentor, presence: true
+  validates :start_date, presence: true
+  validates :end_date, presence: true
+  validates :position, presence: true
+  validates :user_id, presence: true
+  validates :business_id, presence: true
 
-   def user_position_list(position)
-        binding.pry
-    self.users.find(position: position)
-  end
+
+#### old method? 
+  #  def user_position_list(position)
+  #   self.users.find(position: position)
+  # end
 
 end

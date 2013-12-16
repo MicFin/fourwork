@@ -10,8 +10,21 @@ class ApplicationController < ActionController::Base
   protected
 
   def configure_permitted_parameters
+    #add name to update profile
     devise_parameter_sanitizer.for(:account_update) << :name 
+    #adds name to sign up
+    devise_parameter_sanitizer.for(:sign_up) do |u|
+      u.permit(:name, :email, :password, :password_confirmation)
+    end
   end
 
 
 end
+
+
+# # sets up custom parameters sanitizer using strong parameters
+#   # for devise. defined in lib/user_sanitizer.rb
+#   before_filter :configure_devise_params, if: :devise_controller?
+#   def configure_devise_params
+
+#   end
