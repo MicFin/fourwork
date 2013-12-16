@@ -1,30 +1,45 @@
-<h1> Landing Page </h1>
+<h1> FourWork </h1>
+
 <% if @user %>
-	<h2><%= @user.name %></h2>
-	<h3>Email: <%= @user.email %> </h3>
-	<h3>Work Experience:</h3>
-	<% if current_user.id == @user.id %>
-		<div class="search-fields">
-			<%= link_to "Add Work History", new_search_path %>
-		</div>
+	<h2> <%= @user.name %> </h2>
+<% end %>
+
+<% if current_user %>
+
+	<% if @user != current_user && @user.friends.include?(current_user) == nil %>
+		<h3> <%= link_to "Add Friend", friendships_path(friend_id: @user.id), method: :post %> </h3>
 	<% end %>
 
-		<% @user.jobs.each do |job| %>	
-			<h4><%= link_to (job.business.name + ": " + job.business.city + ", " + job.business.state), job.business %> </h4>
-			<h4> <%= job.position %> </h4>
-			<h4> <%= job.start_date.strftime("%m/%d/%Y") %> to <%= job.end_date.strftime("%m/%d/%Y") %></h4>
+		<% if (@user == current_user) || (@user.friends.include?(current_user)) %>
+			<h3>Email: <%= @user.email %> </h3>
+			<h3>Work Experience:</h3>
 			<% if current_user.id == @user.id %>
-				<h5><%= link_to 'Edit', edit_job_path(job) %></h5>	
-			<% end %>	
+				<div class="search-fields">
+					<%= link_to "Add Work History", new_search_path %>
+				</div>
+			<% end %>
+
+			<% @user.jobs.each do |job| %>	
+				<h4><%= link_to (job.business.name + ": " + job.business.city + ", " + job.business.state), job.business %> </h4>
+				<h4> <%= job.position %> </h4>
+				<h4> <%= job.start_date.strftime("%m/%d/%Y") %> to <%= job.end_date.strftime("%m/%d/%Y") %></h4>
+				<% if current_user.id == @user.id %>
+					<h5><%= link_to 'Edit', edit_job_path(job) %></h5>	
+				<% end %>	
+			<% end %>
+
+			<h3>Friends</h3>
+			<% if @user == current_user %>
+				<%= link_to "Find Friends" %>
+			<% end %>
+			<% for friendship in @user.friendships %>
+				<h4>	<%= link_to friendship.friend.name, friendship.friend %>
+				<% if @user == current_user || friendship.friend == current_user %>
+					<%= link_to "remove", friendship, method: :delete %></h4>
+				<% end %>
+			<% end %>
+
 		<% end %>
-
-
-
-
-
-
-
-
 
 
 <% else %>

@@ -31,7 +31,6 @@ class Business < ActiveRecord::Base
     self.all.each do |business|
       @all_categories_list << business.category
     end
-    # return @all_categories_list.uniq!
     @uniq_categories = @all_categories_list.uniq!
     self.by_category(@uniq_categories)
   end

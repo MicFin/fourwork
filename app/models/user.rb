@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   has_many :jobs
   has_many :businesses, through: :jobs
-
+  has_many :friendships
+  has_many :friends, through: :friendships
 
 end

@@ -7,9 +7,16 @@ class BusinessesController < ApplicationController
   end
 
   def show
-      @business = Business.find(params[:id])
-      @positions = Business.find(params[:id]).positions_list
-      @job = current_user.jobs.select{|job| job.business.id ==  params[:id]}
+    @business = Business.find(params[:id])
+    @positions = Business.find(params[:id]).positions_list
+
+    # if current_user != nil
+    #   @job = current_user.jobs.select do |job|       binding.pry 
+    #     if job.business.id == params[:id]
+    #       job
+    #     end
+    #   end
+    # end
   end
 
 
