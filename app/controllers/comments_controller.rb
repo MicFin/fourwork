@@ -6,7 +6,6 @@ class CommentsController < ApplicationController
   end
 
   def new
-    binding.pry
     @comment = Comment.new
     @job_id = params[:job_id]
     @user = User.find(params[:user_id])
@@ -21,6 +20,14 @@ class CommentsController < ApplicationController
     else
       render :new
     end
+  end
+
+  def destroy
+    @comment = Comment.find(params[:id])
+    @job = Job.find(@comment.commentable_id)
+    @comment.destroy
+    redirect_to @job
+    # redirect_to user_path(id: current_user.id) 
   end
 
   private

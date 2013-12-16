@@ -7,4 +7,9 @@
 <h3>Reference: <%= User.find(comment.commentable_id).name %></h3>
 <h3>Comment: 
 <%= comment.content %></h3>
+
+<%#= link_to 'Delete Comment', comment, method: :delete, data: { confirm: "Are you sure you want to remove this reference?" } %>
+<%#= link_to 'Delete Comment', {controller: 'comments', action: 'destroy', comment_id: comment.id} %>
+		<%= link_to "Delete Comment", comment, comment_id: comment.id, method: :delete %>
+
 <% end %>

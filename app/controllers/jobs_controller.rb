@@ -6,10 +6,12 @@ class JobsController < ApplicationController
   end
 
   def show
+    binding.pry
     @job = Job.find(params[:id])
-      @commentable = @job
-      @comments = @commentable.comments
-      @comment = Comment.new
+    @commentable = @job
+    @comments = @commentable.comments
+    @comment = Comment.new
+    binding.pry
   end
   
   def create

@@ -10,7 +10,6 @@ class UsersController < ApplicationController
     else
       @user = current_user
     end
-    binding.pry
 
     ### LEFT OFF HERE 12AM
     ## try redirecting to comment show page instead of user page for simplicity
