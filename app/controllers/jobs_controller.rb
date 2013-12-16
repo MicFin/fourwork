@@ -6,12 +6,11 @@ class JobsController < ApplicationController
   end
 
   def show
-    binding.pry
     @job = Job.find(params[:id])
     @commentable = @job
     @comments = @commentable.comments
     @comment = Comment.new
-    binding.pry
+    @user_job = User.find(@job.user_id)
   end
   
   def create

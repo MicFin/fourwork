@@ -1,5 +1,10 @@
 source 'https://rubygems.org'
 
+group :development, :test do
+  gem 'rspec-rails', '~> 2.0'
+end
+
+gem 'factory_girl_rails'
 
 gem 'pry'
 gem 'devise'
@@ -8,8 +13,6 @@ gem 'dotenv-rails'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0'
-
-
 
 # Use postgresql as the database for Active Record
 gem 'pg'

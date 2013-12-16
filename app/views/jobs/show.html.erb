@@ -1,15 +1,22 @@
-<h3>Employer: <%= Business.find(@commentable.business_id).name %> </h3>
-<h3>Worker: <%= User.find(@commentable.user_id).name %></h3>
+<% if (@user_job == current_user) || (@user_job.friends.include?(current_user)) %>
 
-</br>
+	<h3>Employer: <%= Business.find(@commentable.business_id).name %> </h3>
+	<h3>Employee: <%= User.find(@commentable.user_id).name %></h3>
+	<h3>Position: <%= @commentable.position %></h3>
+	<h3>Start Date: <%= @commentable.start_date.strftime("%m/%d/%Y") %></h3>
+	<h3>End Date: <%= @commentable.end_date.strftime("%m/%d/%Y") %></h3>
+	</br>
 
-<% @comments.each do |comment| %>
-<h3>Reference: <%= User.find(comment.commentable_id).name %></h3>
-<h3>Comment: 
-<%= comment.content %></h3>
+	<% @comments.each do |comment| %>
+		<h3>Comment: </h3>
+		<h3><%= comment.content %></h3>
+		<h3>Referral By: <%= User.find(comment.commentor_id).name %></h3>
+		<% if @user_job.id == current_user.id || comment.commentor_id.to_i == current_user.id %>
 
-<%#= link_to 'Delete Comment', comment, method: :delete, data: { confirm: "Are you sure you want to remove this reference?" } %>
-<%#= link_to 'Delete Comment', {controller: 'comments', action: 'destroy', comment_id: comment.id} %>
-		<%= link_to "Delete Comment", comment, comment_id: comment.id, method: :delete %>
-
+			<%= link_to "Delete Comment", comment, comment_id: comment.id, method: :delete %>
+		<% end %>
+	<% end %>
+	
+<% else %>
+	<h3>No access to <%=link_to @user_job.name, @user_job %>'s Job History</h3>
 <% end %>

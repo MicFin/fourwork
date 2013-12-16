@@ -2,5 +2,6 @@
   <%= f.text_field :content %>
   <%= f.hidden_field :job_id, :value => @job_id %>
   <%= f.hidden_field :user_id, :value => @user.id %>
+  <%= f.hidden_field :commentor_id, :value => current_user.id %>
   <%= f.submit %>
 <% end %>

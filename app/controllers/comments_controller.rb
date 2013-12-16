@@ -12,8 +12,7 @@ class CommentsController < ApplicationController
   end
 
   def create
-    @comment = @commentable.comments.new(content: params[:comment]["content"], commentable_id: params[:comment]["job_id"].to_i)
-    binding.pry
+    @comment = @commentable.comments.new(content: params[:comment]["content"], commentable_id: params[:comment]["job_id"].to_i, commentor_id: params[:comment]["commentor_id"])
     @user = User.find(params[:comment]["user_id"])
     if @comment.save
       redirect_to @commentable, notice: "Comment created."
