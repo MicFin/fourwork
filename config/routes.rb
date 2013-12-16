@@ -1,12 +1,29 @@
 Conectup::Application.routes.draw do
  
+  get "comments/index"
+  get "comments/new"
   devise_for :users
   root :to => "users#show"
-  resources :users
-  resources :businesses
-  resources :searches
-  resources :jobs
-  resources :friendships
+  
+  resources :users do 
+    resources :comments
+  end
+
+  resources :businesses do 
+    resources :comments
+  end
+
+  resources :searches do
+    resources :comments
+  end
+
+  resources :jobs do 
+    resources :comments
+  end
+
+  resources :friendships do
+    resources :comments
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

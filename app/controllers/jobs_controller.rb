@@ -5,7 +5,13 @@ class JobsController < ApplicationController
     @business = Business.find(params[:business_id])
   end
 
-
+  def show
+    @job = Job.find(params[:id])
+      @commentable = @job
+      @comments = @commentable.comments
+      @comment = Comment.new
+  end
+  
   def create
     @job = Job.new(user_id: params[:user_id], business_id: params[:business_id], state: "unverified", start_date: params[:job][:start_date], end_date: params[:job][:end_date], position: params[:job][:position])
     @job.save

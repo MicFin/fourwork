@@ -1,0 +1,10 @@
+<h3>Employer: <%= Business.find(@commentable.business_id).name %> </h3>
+<h3>Worker: <%= User.find(@commentable.user_id).name %></h3>
+
+</br>
+
+<% @comments.each do |comment| %>
+<h3>Reference: <%= User.find(comment.commentable_id).name %></h3>
+<h3>Comment: 
+<%= comment.content %></h3>
+<% end %>

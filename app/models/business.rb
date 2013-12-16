@@ -4,6 +4,8 @@ class Business < ActiveRecord::Base
   has_many :search_businesses
   has_many :searches, through: :search_businesses
 
+  # reviews, comments on business
+  has_many :comments, as: :commentable
 # @alph_positions = self.positions.sort! { |a,b| a.downcase <=> b.downcase } 
 
   def positions_list

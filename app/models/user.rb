@@ -7,5 +7,7 @@ class User < ActiveRecord::Base
   has_many :businesses, through: :jobs
   has_many :friendships
   has_many :friends, through: :friendships
-
+  
+  # comments for messaging
+  has_many :comments, as: :commentable
 end

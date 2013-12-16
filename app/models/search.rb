@@ -1,6 +1,9 @@
 class Search < ActiveRecord::Base
   has_many :search_businesses
   has_many :businesses, through: :search_businesses
+  
+  # tips, comments on a search area?
+  has_many :comments, as: :commentable
 
   def show_businesses
     @businesses ||= populate_businesses
