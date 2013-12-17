@@ -5,6 +5,9 @@ class Search < ActiveRecord::Base
   # tips, comments on a search area?
   has_many :comments, as: :commentable
 
+  validates :business_name, presence: true
+  validates :city, presence: true
+
   def show_businesses
     @businesses ||= populate_businesses
     self.businesses

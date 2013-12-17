@@ -11,4 +11,8 @@ class User < ActiveRecord::Base
   
   # comments for messaging
   has_many :comments, as: :commentable
+
+  validates :name, presence: true
+  validates :email, presence: true
+  
 end

@@ -1,13 +1,9 @@
 # require 'spec_helper'
 
 FactoryGirl.define do 
-  factory :job, class: Job do 
-    start_date "1999-01-02"
-    end_date "1999-01-02"
-    position "cook"
-    user_id 1
-    business_id 1
-
+  factory :search, class: Search do 
+    business_name "Starbucks"
+    city "Hingham, Ma"
     # ignore do
     #   comments_count 3      
     # end

@@ -1,10 +1,11 @@
-<h1> FourWork </h1>
 
 <% if @user %>
 	<h2> <%= @user.name %> </h2>
 <% end %>
 
 <% if current_user %>
+
+  <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
 
 	<% if @user != current_user && @user.friends.include?(current_user) == nil %>
 		<h3> <%= link_to "Add Friend", friendships_path(friend_id: @user.id), method: :post %> </h3>
@@ -33,11 +34,6 @@
 
 				<h4> <%=link_to "View References", job %></h4>
 
-				<h4> <%#=link_to "Add Reference", [:new, @commentable, :comment] %></h4>
-<%#= render 'comments/comments' %>
-<%#= render 'comments/form' %>
-
-
 			<% end %>
 
 
@@ -58,5 +54,9 @@
 
 
 <% else %>
-	<%= "Please Sign Up" %>
+	<div class="join-div">
+		<div class="join-description">
+			Connect with other retail and restaurant employees to find great places to work and great people to work with!
+		</div>
+	</div>
 <% end %>
