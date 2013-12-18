@@ -1,5 +1,8 @@
 source 'https://rubygems.org'
 
+gem 'angularjs-rails'
+
+
 group :development, :test do
   gem 'rspec-rails', '~> 2.0'
 end

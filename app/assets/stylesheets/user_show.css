@@ -1,0 +1,48 @@
+
+.user-show-header{
+	width: 100%;
+	text-align: center;
+}
+
+.user-header-list{
+	list-style-type: none;
+	width: 100%;
+	padding: 0;
+}
+
+.user-header-list li{
+  display: inline-block;
+}
+
+.user-show-info{
+	width: 300px;
+}
+
+.user-show-picture{
+	width: 300px;
+}
+
+.edit-profile-button{
+	width: 100px;
+	margin: 0 auto;
+}
+
+/*current user or friends can view the following*/
+.user-items-container{
+	width: 90%;
+	margin: 0 auto;
+}
+
+.user-item-container{
+	width: 25%;
+	height: 225px;
+	margin: 10px;
+	float: left;
+	padding: 10px;
+	background-color: rgba(204, 204, 204, 0.5);
+	overflow: scroll;
+}
+
+.friends-list-container{
+	clear: both;
+}

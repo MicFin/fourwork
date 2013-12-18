@@ -1,12 +1,15 @@
-.join-div{
-	margin-top: 50px;
-	
+.row {
+	padding-top: 100px;
 }
 
 .join-description{
 	height: 100%;
 	width: 50%;
 	margin: 0 auto;
-	background-color: rgba(204, 204, 204, 0.5);
 	padding: 50px;
+	background-color: rgba(204, 204, 204, 0.5);
+}
+
+.join_description p{
+
 }

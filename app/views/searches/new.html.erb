@@ -1,13 +1,2 @@
-<%= form_for @search do |f| %>
-	<div>
-		<%= f.label :business_name %>
-		<%= f.text_field :business_name %>
-	</div>
-	<div>
-		<%= f.label :city, "City, State" %>
-		<%= f.text_field :city %>
-	</div>
-	<div>
-		<%= f.submit "Search" %>
-	</div>
-<% end %>
+
+<%= render "form" %>

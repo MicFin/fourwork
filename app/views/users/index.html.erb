@@ -1,4 +1,39 @@
-<% @users.each do |user|%>
-<%= user.email %>
-<%= user.id %>
-<% end %>
+<div class="user-items-container">
+
+
+	<div ng-controller="SimpleController">
+		
+		<input type="text" ng-model="name"/> {{name}}
+		</br>
+
+		<ul>
+			<li data-ng-repeat= "user in users | filter:name | orderBy:'city'">{{ user.name | uppercase }} - {{ user.city | lowercase }}</li>
+		</ul>
+
+	</div>
+
+	<% @users.each do |user|%>
+		<div class="user-item-container">
+		<h2><%= link_to user.name, user %></h2>
+		<h3><%= user.email %></h3>
+			<% if user != current_user && user.friends.include?(current_user) == nil %>
+				<h3> <%= link_to "Add Friend", friendships_path(friend_id: user.id), method: :post %> </h3>
+			<% end %>
+			<% if user.friends.include?(current_user) != nil %>
+				<h3> <%= link_to "Remove Friend", friendships_path(friend_id: user.id), method: :delete %> </h3>
+			<% end %>
+
+
+		</div>
+	<% end %>
+</div>
+
+	<script>
+		var fourWorkApp = angular.module('fourWorkApp',[]);
+		var controllers = {};	
+		controllers.SimpleController = function($scope){
+			$scope.users = 
+			 {dave: {name: "dave", email: "email.com", city: "the city"} };
+		};
+		fourWorkApp.controller(controllers);
+	</script>

@@ -1,18 +1,33 @@
 
 <% if @user %>
-	<h2> <%= @user.name %> </h2>
+	<div class="user-show-header">
+		<ul class="user-header-list">
+			<li class="user-show-info">
+				<h2> <%= @user.name %> </h2>
+				<% if (@user == current_user) %>
+					<h3><%= @user.email %> </h3>
+					<h3> <%= @user.address %> </h3>
+				<% end%>
+				<h3> <%= @user.city_state %> </h3>
+			</li>
+
+			<li class="user-show-picture">PICTURE GOES HERE</li>
+		</ul>
+	</div>
+<% end %>
+
+<% if current_user && (@user == current_user) %>
+	<div class="edit-profile-button">
+	  <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> 
+	</div>
 <% end %>
 
 <% if current_user %>
-
-  <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
-
 	<% if @user != current_user && @user.friends.include?(current_user) == nil %>
 		<h3> <%= link_to "Add Friend", friendships_path(friend_id: @user.id), method: :post %> </h3>
 	<% end %>
 
 		<% if (@user == current_user) || (@user.friends.include?(current_user)) %>
-			<h3>Email: <%= @user.email %> </h3>
 			<h3>Work Experience:</h3>
 			<% if current_user.id == @user.id %>
 				<div class="search-fields">
@@ -20,43 +35,47 @@
 				</div>
 			<% end %>
 
-			<% @user.jobs.each do |job| %>	
-				<h4><%= link_to (job.business.name + ": " + job.business.city + ", " + job.business.state), job.business %> </h4>
-				<% if current_user.id == @user.id %>
-				<h5><%= link_to 'Edit', edit_job_path(job) %></h5>	
-				<% end %>	
-				<h4> <%= job.position %> </h4>
-				<h4> <%= job.start_date.strftime("%m/%d/%Y") %> to <%= job.end_date.strftime("%m/%d/%Y") %></h4>
-				<% if @user != current_user %>
-				<h4> <%=link_to "Add Reference", new_job_comment_path(job_id: job.id, commentable: @commentable, user_id: @user.id ) %></h4>
-
+			<div class="user-items-container">
+				<% @user.jobs.each do |job| %>	
+					<div class="user-item-container">
+						<h4><%= link_to (job.business.name + ": " + job.business.city + ", " + job.business.state), job.business %> </h4>
+						<% if current_user.id == @user.id %>
+							<h5><%= link_to 'Edit', edit_job_path(job) %></h5>	
+						<% end %>	
+						<h4> <%= job.position %> </h4>
+						<h4> <%= job.start_date.strftime("%m/%d/%Y") %> to <%= job.end_date.strftime("%m/%d/%Y") %></h4>
+						<% if @user != current_user %>
+						<h4> <%=link_to "Add Reference", new_job_comment_path(job_id: job.id, commentable: @commentable, user_id: @user.id ) %></h4>
+						<% end %>
+						<h4> <%=link_to "View References", job %></h4>
+					</div>
 				<% end %>
-
-				<h4> <%=link_to "View References", job %></h4>
-
-			<% end %>
+			</div>
 
 
+			<div class="friends-list-container">
+				<h3>Connections</h3>
 
+					<% if @user == current_user %>
+						<%= link_to "FindPeople", users_path %>
+					<% end %>
 
-			<h3>Friends</h3>
-			<% if @user == current_user %>
-				<%= link_to "Find Friends" %>
-			<% end %>
-			<% for friendship in @user.friendships %>
-				<h4>	<%= link_to friendship.friend.name, friendship.friend %>
-				<% if @user == current_user || friendship.friend == current_user %>
-					<%= link_to "remove", friendship, method: :delete %></h4>
-				<% end %>
-			<% end %>
-
+					<div class="user-items-container">
+					<% for friendship in @user.friendships %>
+						<div class="user-item-container">
+							<h4>	<%= link_to friendship.friend.name, friendship.friend %>
+							<% if @user == current_user || friendship.friend == current_user %>
+								<%= link_to "remove", friendship, method: :delete %></h4>
+							<% end %>
+						</div>
+					<% end %>
+			</div>
 		<% end %>
 
-
 <% else %>
-	<div class="join-div">
-		<div class="join-description">
-			Connect with other retail and restaurant employees to find great places to work and great people to work with!
+	<div class="row">
+		<div class="join-description"><p>
+			Connect with other retail and restaurant employees to find great places to work and great people to work with!</p>
 		</div>
 	</div>
 <% end %>

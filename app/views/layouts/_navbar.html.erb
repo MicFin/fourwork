@@ -1,22 +1,23 @@
 
 <nav class="navigation-wrapper">
   <% if user_signed_in? %>
-    <h1 class='title'><a href="navigation-wrapper" class="name">Mic Fin</a></h1>
+    <h1 class='title'>
+<!--       <a href="navigation-wrapper" class="name"><%=current_user.name%></a> -->
+   
+         <%= link_to current_user.name, current_user, id: current_user.id  %>
+    </h1>
     <div class="buttons-wrapper">
       <ul>
-        <a href="add-job" class="direct-link">
+        <li>
+          <%= link_to "AddJob", new_search_path, id: current_user.id  %>
+        </li>
+ <!--        <a href="find-people" class="direct-link"> -->
           <li>
-            AddJob
+              <%= link_to "FindPeople", users_path, id: current_user.id  %>
           </li>
-        </a>
-        <a href="find-people" class="direct-link">
+<!--         <a href="edit-resume" target="_blank" class="direct-link"> -->
           <li>
-            FindPeople
-          </li>
-        </a>
-        <a href="edit-resume" target="_blank" class="direct-link">
-          <li>
-            EditResume
+                      <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> 
           </li>
         </a>
         <a href="log-out" target="_blank" class="direct-link">
@@ -27,7 +28,9 @@
       </ul>
     </div>
   <% else %>
-   	<h1 class='title'><a href="navigation-wrapper" class="name">FourWork</a></h1>
+
+
+<h1 class='title'><a href="navigation-wrapper" class="name">FourWork</a></h1>
     <div class="buttons-wrapper">
       <ul>
         <a href="sign-up" class="direct-link">
@@ -41,6 +44,7 @@
           </li>
         </a>
       </ul>
-    </div>
+    </div> 
+
   <% end %>
 </nav>
