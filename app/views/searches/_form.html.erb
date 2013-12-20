@@ -1,11 +1,11 @@
 <%= form_for @search do |f| %>
 	<div>
 		<%= f.label :business_name %>
-		<%= f.text_field :business_name %>
+		<%= f.text_field :business_name, placeholder: "#{current_user.name}'s Diner" %>
 	</div>
 	<div>
 		<%= f.label :city, "City, State" %>
-		<%= f.text_field :city %>
+		<%= f.text_field :city, placeholder: "#{current_user.city_state}" %>
 	</div>
 	<div>
 		<%= f.submit "Search" %>

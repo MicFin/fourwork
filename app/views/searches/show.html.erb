@@ -2,39 +2,45 @@
 
 <h1>Search Results</h1>
 
+<% if @search.businesses.count < 1 %>
+	<h3>No matches</h3>
 
-<div class="user-items-container">
+<% else %>
 
-	<% @search.businesses.each do |business| %>
-		<div class="user-item-container">
-			<h3><%= link_to (business["name"]), business %> </h3>
+	<div class="user-items-container">
 
-			<h5><%= link_to "Add Job", new_job_path(business_id: business.id) %></h5>
-			
-			<% if current_user %>
-				<% if business.user_ids.include?(current_user.id) %>
-					<% current_user.jobs.each do |job|%> 
-						<% if job.business_id == business.id %>
-			
-							<h5><%= job.position %> 
-							<%= link_to 'Edit Job', edit_job_path(id: job.id) %></h5>
+		<% @search.businesses.each do |business| %>
+			<div class="user-item-container">
+				<h3><%= link_to (business["name"]), business %> </h3>
 
-			
+				<h5><%= link_to "Add Job", new_job_path(business_id: business.id) %></h5>
+				
+				<% if current_user %>
+					<% if business.user_ids.include?(current_user.id) %>
+						<% current_user.jobs.each do |job|%> 
+							<% if job.business_id == business.id %>
+				
+								<h5><%= job.position %> 
+								<%= link_to 'Edit Job', edit_job_path(id: job.id) %></h5>
+
+				
+							<% end %>
 						<% end %>
 					<% end %>
 				<% end %>
-			<% end %>
-		  <h4><%= business["address"] %></h4>
-		  <h4><%= business["city"] %></h4>
-		  <h4><%= business["state"] %></h4>
+			  <h4><%= business["address"] %></h4>
+			  <h4><%= business["city"] %></h4>
+			  <h4><%= business["state"] %></h4>
 
-		  <ul class="business-users-list">
-		  	<% business.users.uniq.each do |user| %>
-		  		<li class="business-user-item">
-		  			<%= link_to user.name %>
-		  		</li>
-		  	<% end %>
-		  </ul>
-		</div>
-	<% end %>
-</div>
+			  <ul class="business-users-list">
+			  	<% business.users.uniq.each do |user| %>
+			  		<li class="business-user-item">
+			  			<%= link_to user.name %>
+			  		</li>
+			  	<% end %>
+			  </ul>
+			</div>
+		<% end %>
+	</div>
+
+<% end %>

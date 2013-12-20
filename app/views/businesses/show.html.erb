@@ -23,32 +23,53 @@
 	<h2> Positions by # of Employees</h2>
 
 	<% @positions.each do |position, total|%>
-		<h3> <%= position %>s: <%= total %> </h3>
+		<h3> 
+		<a href="#<%= position %>-list"><%= position %>s: <%= total %> </a></h3>
 	<% end %>
-
-	<h2> Employees by Name</h2>
-	<% @business.users.uniq.each do |user|%>
-		<h3> <%= link_to user.name, user_path(id: user.id) %>: 	</h3>
-		<% user.jobs.each do |job|%> 
-			<% if job.business_id == @business.id %>
-	 			<h4> <%= job.position %> 
-	 			<% if job.user_id == current_user.id %>
-					<%= link_to 'Edit Job', edit_job_path(id: job.id) %> </h4>
-				<% end %>
+  
+	<div class="business-lists">
+		<h2> Employees by Name</h2>
+		<div class="user-items-container">
+			<% @business.users.uniq.each do |user|%>
+				<div class="user-item-container">
+					<h3> <%= link_to user.name, user_path(id: user.id) %>: 	</h3>
+					<% user.jobs.each do |job|%> 
+						<% if job.business_id == @business.id %>
+				 			<h4> <%= job.position %> 
+				 			<% if job.user_id == current_user.id %>
+								<%= link_to 'Edit Job', edit_job_path(id: job.id) %> </h4>
+							<% end %>
+						<% end %>
+					<% end %>
+				</div>
 			<% end %>
-		<% end %>
+		</div>
+	</div>
 
-	<% end %>
-
-	<h2> Employees by Position</h2>
+	<div class="business-lists">
+		<h2> Employees by Position</h2>
 		<% @positions.each do |position| %>
-			<h3> <%= position.first %>s: </h3>
-			<% @business.jobs.each do |job| %>
-				<% if job.position == position.first %>
-					<h4><%= link_to (User.find(job.user_id)).name, User.find(job.user_id) %> </h4>
-				<% end %>
-			<% end %>
+			<div class="business-lists">
+				<a id="<%=position.first%>-list"> <%= position.first %>s: </a>
+					<div class="user-items-container user-by-position">
+					<% @business.jobs.each do |job| %>
+						<% if job.position == position.first %>
+							<div class="user-item-container">
+								<h4>
+								<%= link_to (User.find(job.user_id)).name, User.find(job.user_id) %> 
+								<% if job.user_id == current_user.id %>
+								<%= link_to 'Edit Job', edit_job_path(id: job.id) %> 
+								<% end %>
+								</h4>
+
+							</div>
+						<% end %>
+					<% end %>
+				</div>
+			</div>
 		<% end %>
+	</div>
+
 
 <% else %>
 	Please Sign Up

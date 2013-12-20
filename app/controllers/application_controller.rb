@@ -13,11 +13,11 @@ class ApplicationController < ActionController::Base
     #add name to update profile
     # devise_parameter_sanitizer.for(:account_update) << :name
     devise_parameter_sanitizer.for(:account_update) do |u|
-      u.permit(:name, :address, :city_state, :image, :email, :password, :password_confirmation, :current_password)
+      u.permit(:name, :address, :city_state, :image, :email, :password, :password_confirmation, :current_password, :avatar)
     end 
     #adds name to sign up
     devise_parameter_sanitizer.for(:sign_up) do |u|
-      u.permit(:name, :address, :city_state, :image, :email, :password, :password_confirmation)
+      u.permit(:name, :address, :city_state, :image, :email, :password, :password_confirmation, :avatar)
     end
   end
 

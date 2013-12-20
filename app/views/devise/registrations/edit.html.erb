@@ -1,6 +1,6 @@
 <h2>Edit <%= resource_name.to_s.humanize %></h2>
 
-<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
+<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, mutipart: true}) do |f| %>
   <%= devise_error_messages! %>
 <div class="registration-container">
   <ul class="registration-list">
@@ -17,9 +17,11 @@
   </li>
 
   <li class="registration-photo">
-    <div>IMAGE HERE</div>
-    <div><%= f.label :up_load_image %><br />
-    <%= f.text_field :image, :autofocus => true %></div>
+  <% if current_user.avatar != nil %>
+    <%= image_tag @user.avatar.url(:medium) %>
+  <% end %>
+    <div><%= f.file_field :avatar %></div>
+    <div><%= f.label :up_load_image %></div>
    </li>
 
   <li class="registration-passwords">

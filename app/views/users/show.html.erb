@@ -5,6 +5,10 @@
 			<li class="user-show-info">
 				<h2> <%= @user.name %> </h2>
 				<% if (@user == current_user) %>
+
+
+				<%= image_tag @user.avatar.url %>
+
 					<h3><%= @user.email %> </h3>
 					<h3> <%= @user.address %> </h3>
 				<% end%>
@@ -63,6 +67,7 @@
 					<div class="user-items-container">
 					<% for friendship in @user.friendships %>
 						<div class="user-item-container">
+						<%= image_tag friendship.friend.avatar.url(:thumb) %>
 							<h4>	<%= link_to friendship.friend.name, friendship.friend %>
 							<% if @user == current_user || friendship.friend == current_user %>
 								<%= link_to "remove", friendship, method: :delete %></h4>

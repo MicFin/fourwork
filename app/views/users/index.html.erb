@@ -1,16 +1,40 @@
-<div class="user-items-container">
 
+<div class="search-users-field">
+	<% form_tag users_path, :method => 'get' do %>
+	  <p>
+	    <%= text_area_tag :search, params[:search] %>
+	    <%= submit_tag "Search", :name => nil %>
+	  </p>
+	<% end %>
+</div>
 
-	<div ng-controller="SimpleController">
-		
-		<input type="text" ng-model="name"/> {{name}}
-		</br>
-
-		<ul>
-			<li data-ng-repeat= "user in users | filter:name | orderBy:'city'">{{ user.name | uppercase }} - {{ user.city | lowercase }}</li>
-		</ul>
-
+<%= form_for users_path do |f| %>
+	<div>
+		<%= f.label :user %>
+		<%= f.text_field :business_name, placeholder: "#{current_user.name}'s Diner" %>
 	</div>
+	<div>
+		<%= f.label :city, "City, State" %>
+		<%= f.text_field :city, placeholder: "#{current_user.city_state}" %>
+	</div>
+	<div>
+		<%= f.submit "Search" %>
+	</div>
+<% end %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="user-items-container">
 
 	<% @users.each do |user|%>
 		<div class="user-item-container">
@@ -22,18 +46,8 @@
 			<% if user.friends.include?(current_user) != nil %>
 				<h3> <%= link_to "Remove Friend", friendships_path(friend_id: user.id), method: :delete %> </h3>
 			<% end %>
-
-
 		</div>
 	<% end %>
 </div>
 
-	<script>
-		var fourWorkApp = angular.module('fourWorkApp',[]);
-		var controllers = {};	
-		controllers.SimpleController = function($scope){
-			$scope.users = 
-			 {dave: {name: "dave", email: "email.com", city: "the city"} };
-		};
-		fourWorkApp.controller(controllers);
-	</script>
+	
