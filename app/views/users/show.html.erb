@@ -61,20 +61,27 @@
 				<h3>Connections</h3>
 
 					<% if @user == current_user %>
-						<%= link_to "FindPeople", users_path %>
+						<%= link_to "Make More Connections", users_path %>
 					<% end %>
 
 					<div class="user-items-container">
 					<% for friendship in @user.friendships %>
 						<div class="user-item-container">
-						<%= image_tag friendship.friend.avatar.url(:thumb) %>
+							<%= image_tag friendship.friend.avatar.url(:thumb) %>
 							<h4>	<%= link_to friendship.friend.name, friendship.friend %>
 							<% if @user == current_user || friendship.friend == current_user %>
 								<%= link_to "remove", friendship, method: :delete %></h4>
 							<% end %>
+							<h4>Mutual Friends: <%= current_user.friends_of_friend(friendship.friend).count %></h4>
+							<h3>
+								<% current_user.friends_of_friend(friendship.friend).each do |friend|%>
+									<%= link_to friend.name, friend%>
+								<% end %>
+							</h3>
 						</div>
 					<% end %>
 			</div>
+
 		<% end %>
 
 <% else %>
